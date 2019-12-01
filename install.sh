@@ -37,7 +37,7 @@ if [ $? -ne 0 ]; then
 fi
 
 msg_notice "Installing keygen"
-ssh-keygen
+ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -q -N ""
 sudo pacman -Sy --noconfirm --needed xclip
 cat ~/.ssh/id_rsa.pub | xclip
 msg_warning "You should now paste you keygen to github/gitlab!"
