@@ -27,6 +27,8 @@ function msg_warning()
     return 0
 }
 
+
+
 msg_notice "Testing existence of 'pacman'"
 which pacman > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -49,4 +51,12 @@ msg_notice "Installing 'yaourt'"
     makepkg -si --noconfirm
     cd ..
     rm -rf $(pwd)
+)
+
+msg_notice "Installing 'zsh', 'antigen' and co."
+yaourt -S --noconfirm --needed zsh
+(
+    git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
+    curl https://raw.githubusercontent.com/xgarrido/dotfiles/master/zshrc > ~/.zshrc
+    zsh -i -c "pkgman install @archlinux"
 )

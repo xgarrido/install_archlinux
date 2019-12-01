@@ -1,0 +1,9 @@
+#+TITLE: Arch linux minimal setup
+
+This repository holds the =install.sh= script which will install a minimal set of packages given a
+fresh installation of Archlinux.
+
+You can execute it from a terminal with the following command (given that =curl= is already installed)
+#+BEGIN_SRC sh
+  curl -L https://raw.githubusercontent.com/xgarrido/install_archlinux/master/install.sh | bash
+#+END_SRC
