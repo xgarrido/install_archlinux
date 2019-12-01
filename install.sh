@@ -36,11 +36,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-msg_notice "Installing keygen"
-ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -q -N ""
-sudo pacman -Sy --noconfirm --needed xclip
-cat ~/.ssh/id_rsa.pub | xclip
-msg_warning "You should now paste you keygen to github/gitlab!"
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+    msg_notice "Installing keygen"
+    -f ~/.ssh/id_rsa.pub
+    ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -q -N ""
+    sudo pacman -Sy --noconfirm --needed xclip
+    cat ~/.ssh/id_rsa.pub | xclip
+    msg_warning "You should now paste you keygen to github/gitlab!"
+fi
 
 msg_notice "Installing 'base-devel' and 'git'"
 sudo pacman -Sy --noconfirm --needed base-devel git
