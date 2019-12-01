@@ -36,25 +36,17 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+msg_notice "Installing keygen"
+ssh-keygen
+sudo pacman -Sy --noconfirm --needed xclip
+cat ~/.ssh/id_rsa.pub | xclip
+msg_warning "You should now paste you keygen to github/gitlab!"
+
 msg_notice "Installing 'base-devel' and 'git'"
 sudo pacman -Sy --noconfirm --needed base-devel git
 
-msg_notice "Installing 'yaourt'"
-(
-    cd $(mktemp -d)
-    git clone https://aur.archlinux.org/package-query.git
-    cd package-query
-    makepkg -si --noconfirm
-    cd ..
-    git clone https://aur.archlinux.org/yaourt.git
-    cd yaourt
-    makepkg -si --noconfirm
-    cd ..
-    rm -rf $(pwd)
-)
-
 msg_notice "Installing 'zsh', 'antigen' and co."
-yaourt -S --noconfirm --needed zsh
+sudo pacman -Sy --noconfirm --needed zsh
 (
     git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
     curl https://raw.githubusercontent.com/xgarrido/dotfiles/master/zshrc > ~/.zshrc
