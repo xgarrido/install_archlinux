@@ -38,11 +38,12 @@ fi
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
     msg_notice "Installing keygen"
-    -f ~/.ssh/id_rsa.pub
     ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -q -N ""
     sudo pacman -Sy --noconfirm --needed xclip
     cat ~/.ssh/id_rsa.pub | xclip
     msg_warning "You should now paste you keygen to github/gitlab!"
+    xdg-open https://github.com/settings/keys &
+    xdg-open https://gitlab.in2p3.fr/profile/keys &
 fi
 
 msg_notice "Installing 'base-devel' and 'git'"
