@@ -28,7 +28,6 @@ function msg_warning()
 }
 
 
-
 msg_notice "Testing existence of 'pacman'"
 which pacman > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -38,7 +37,7 @@ fi
 
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
     msg_notice "Installing keygen"
-    ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -q -N ""
+    ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
     sudo pacman -Sy --noconfirm --needed xclip
     cat ~/.ssh/id_rsa.pub | xclip
     msg_warning "You should now paste you keygen to github/gitlab!"
