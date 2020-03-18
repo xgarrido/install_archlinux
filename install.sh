@@ -52,6 +52,6 @@ msg_notice "Installing 'zsh', 'antigen' and co."
 sudo pacman -Sy --noconfirm --needed zsh
 (
     git clone https://github.com/zsh-users/antigen.git ~/.config/zsh/antigen
-    curl https://raw.githubusercontent.com/xgarrido/dotfiles/master/zshrc > ~/.zshrc
+    curl https://raw.githubusercontent.com/xgarrido/zsh-dotfiles/master/dotfiles/zshrc > ~/.zshrc
     zsh -i -c "pkgman install @archlinux"
 )
